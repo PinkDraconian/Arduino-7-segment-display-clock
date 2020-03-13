@@ -37,7 +37,7 @@ void loop() {
     }
   }
   leds[14 * 2] = CRGB::Red; // Light the dots
-  leds[14 * 2 + 1] == CRGB::Red;
+  leds[14 * 2 + 1] = CRGB::Red;
   
   FastLED.show(); // Show the current LEDs
   delay(500);
