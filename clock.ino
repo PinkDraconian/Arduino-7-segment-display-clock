@@ -14,7 +14,7 @@ void setup() {
 }
 
 void loop() {
-
+  sevenSegment(0, 8);
 }
 
 void RGBsetup() {
@@ -75,11 +75,4 @@ void sevenSegment(int pos, int val)
       rgb[j++] = 0;
     }
   }
-}
-
-uint8_t v_0_255(int v)
-{
-  if (v<0) return 0;
-  if (v>255) return 255;
-  return v;
 }
