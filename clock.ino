@@ -20,7 +20,7 @@ void loop() {
       FastLED.clear();
       leds[DISPLAY_SEGMENT[i] + j] = CRGB::Red;
       FastLED.show();
-      delay(30);
+      delay(500);
     }
   }
 }
