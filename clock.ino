@@ -20,12 +20,15 @@ const int DISPLAY_NUMBER[][14] = { // True: Lit, False:  Not lit
 };
 
 void setup() {
+  Serial.begin(9600);
+  Serial.println("Starting execution");
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
   FastLED.setBrightness(40); // Lower brightness
 }
 
 void loop() {
   int numberToDisplay = Serial.readString().toInt(); // Take in user input
+  Serial.println(numberToDisplay);
 
   FastLED.clear(); // Clear the LEDs
 
