@@ -14,7 +14,7 @@ void setup() {
 }
 
 void loop() {
-  FastLED.clear()
+  FastLED.clear();
     
   int numberToDisplay = 0;
   for (int i = 0; i < TOTAL_SEGMENTS; i++) {
