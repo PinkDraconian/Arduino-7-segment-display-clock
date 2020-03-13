@@ -11,7 +11,7 @@ const int DISPLAY_NUMBER[][12] = {
 
 void setup() {
   Serial.begin(9600);
-  Serial.print("Starting execution");
+  Serial.println("Starting execution");
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
   FastLED.setBrightness(40);
 }
@@ -20,7 +20,7 @@ void loop() {
   int numberToDisplay = 0;
   for (int i = 0; i < TOTAL_SEGMENTS; i++) {
     for (int j = 0; j < sizeof DISPLAY_NUMBER[numberToDisplay]; j++) {
-      Serial.print(DISPLAY_SEGMENT[i] + DISPLAY_NUMBER[numberToDisplay][j]);
+      Serial.println(DISPLAY_SEGMENT[i] + DISPLAY_NUMBER[numberToDisplay][j]);
       leds[DISPLAY_SEGMENT[i] + DISPLAY_NUMBER[numberToDisplay][j]] = CRGB::Red;
     }
   }
