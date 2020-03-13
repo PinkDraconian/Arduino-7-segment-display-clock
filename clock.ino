@@ -17,10 +17,10 @@ void loop() {
   int numberToDisplay = 0;
   for (int i = 0; i < TOTAL_SEGMENTS; i++) {
     for (int j = 0; j < 14; j++) {
-      FastLED.clear();
       leds[DISPLAY_SEGMENT[i] + j] = CRGB::Red;
-      FastLED.show();
-      delay(500);
     }
   }
+  
+  FastLED.show();
+  delay(500);
 }
