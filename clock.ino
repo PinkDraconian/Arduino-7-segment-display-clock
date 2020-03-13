@@ -11,7 +11,7 @@ const int DISPLAY_NUMBER[][12] = {
 
 void setup() {
   Serial.begin(9600);
-  Serial.write("Starting execution");
+  Serial.write("Starting execution\n");
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
 }
 
