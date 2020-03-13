@@ -1,4 +1,7 @@
 #include <FastLED.h>
+#include <Wire.h>
+#include <ds3231.h>
+
 #define NUM_LEDS 58
 #define DATA_PIN 6
 CRGB leds[NUM_LEDS];
