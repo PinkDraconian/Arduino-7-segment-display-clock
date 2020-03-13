@@ -14,15 +14,13 @@ void setup() {
 }
 
 void loop() {
-  FastLED.clear();
-    
   int numberToDisplay = 0;
   for (int i = 0; i < TOTAL_SEGMENTS; i++) {
-    for (int j = 0; j < sizeof DISPLAY_NUMBER[numberToDisplay]; j++) {
+    for (int j = 0; j < 14; j++) {
+      FastLED.clear();
       leds[DISPLAY_SEGMENT[i] + j] = CRGB::Red;
+      FastLED.show();
+      delay(30);
     }
   }
-  
-  FastLED.show();
-  delay(30);
 }
