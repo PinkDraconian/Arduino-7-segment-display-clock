@@ -52,9 +52,6 @@ void loop() {
 
   int minuteFirstDigit = minute / 10; // Take the first digit
   int minuteSecondDigit = minute % 10; // Take the second digit
-
-  leds[14 * 2] = CRGB::Red; // Light the dots
-  leds[14 * 2 + 1] = CRGB::Red;
   
   int totalDelay = 0
   while (totalDelay < 10000) { // 10 seconds
@@ -76,6 +73,8 @@ void loop() {
     displayNumber(2, hourSecondDigit);
     displayNumber(1, minuteFirstDigit);
     displayNumber(0, minuteSecondDigit);
+    leds[14 * 2].setRGB(red, green, blue); // Light the dots
+    leds[14 * 2 + 1].setRGB(red, green, blue);
     FastLED.show(); // Show the current LEDs
     delay(10);
     totalDelay += 10;
