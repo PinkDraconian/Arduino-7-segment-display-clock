@@ -37,14 +37,15 @@ void setup() {
 }
 
 void loop() {
-  int hour = rtc.getHour();
-  int minute = rtc.getMinute();
+  bool h12, pm;
+  int hour = rtc.getHour(h12, pm); // Get the hour
+  int minute = rtc.getMinute(); // Get the minute
 
-  int hourFirstDigit = hour / 10;
-  int hourSecondDigit = hour % 10;
+  int hourFirstDigit = hour / 10; // Take the first digit
+  int hourSecondDigit = hour % 10; // Take the second digit
 
-  int minuteFirstDigit = minute / 10;
-  int minuteSecondDigit = minute % 10;
+  int minuteFirstDigit = minute / 10; // Take the first digit
+  int minuteSecondDigit = minute % 10; // Take the second digit
 
   displayNumber(3, hourFirstDigit);
   displayNumber(2, hourSecondDigit);
