@@ -1,11 +1,11 @@
 #include <FastLED.h>
+#include <DS3231.h>
 #include <Wire.h>
-#include <ds3231.h>
 
 #define NUM_LEDS 58
 #define DATA_PIN 6
 CRGB leds[NUM_LEDS];
-DS3231 rtc(SDA, SCL);
+DS3231 rtc;
 
 const int TOTAL_SEGMENTS = 4; // Total amount of segments
 const int LEDS_PER_SEGMENT = 14; // Amount of LEDs per segment
@@ -29,33 +29,40 @@ void setup() {
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
   FastLED.setBrightness(40); // Lower brightness
   
-  rtc.begin(); // Initialize the rtc object
-  
+  Wire.begin();
+
   // The following lines can be uncommented to set the date and time
-  //rtc.setDOW(WEDNESDAY);     // Set Day-of-Week to SUNDAY
-  //rtc.setTime(12, 0, 0);     // Set the time to 12:00:00 (24hr format)
-  //rtc.setDate(1, 1, 2014);   // Set the date to January 1st, 2014
+  //rtc.setHour(15);     // Set the hour to 15 (24hr format)
+  //rtc.setMinute(12);   // Set the minute to 12
 }
 
 void loop() {
-  Serial.println(rtc.getTimeStr());
-  /*
-  int numberToDisplay = Serial.readString().toInt(); // Take in user input
-  Serial.println(numberToDisplay);
+  int hour = rtc.getHour();
+  int minute = rtc.getMinute();
 
-  FastLED.clear(); // Clear the LEDs
+  int hourFirstDigit = hour / 10;
+  int hourSecondDigit = hour % 10;
 
-  for (int i = 0; i < TOTAL_SEGMENTS; i++) { // Loop over each segment
-    for (int j = 0; j < LEDS_PER_SEGMENT; j++) { // Loop over each LED of said segment
-      if (DISPLAY_NUMBER[numberToDisplay][j]) { // If this LED should be on
-        leds[DISPLAY_SEGMENT[i] + j] = CRGB::Red; // Turn it on
-      }
-    }
-  }
+  int minuteFirstDigit = minute / 10;
+  int minuteSecondDigit = minute % 10;
+
+  displayNumber(3, hourFirstDigit);
+  displayNumber(2, hourSecondDigit);
+  displayNumber(1, minuteFirstDigit);
+  displayNumber(0, minuteSecondDigit);
+
   leds[14 * 2] = CRGB::Red; // Light the dots
   leds[14 * 2 + 1] = CRGB::Red;
   
   FastLED.show(); // Show the current LEDs
-  */
-  delay(500);
+  delay(10000); // Wait 10 seconds
+  FastLED.clear(); // Clear the LEDs
+}
+
+void displayNumber(int segment, int number) {
+  for (int j = 0; j < LEDS_PER_SEGMENT; j++) { // Loop over each LED of said segment
+    if (DISPLAY_NUMBER[number][j]) { // If this LED should be on
+      leds[DISPLAY_SEGMENT[segment] + j] = CRGB::Red; // Turn it on
+    }
+  }
 }
