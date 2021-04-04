@@ -5,6 +5,10 @@
 #define NUM_LEDS 58
 #define DATA_PIN 6
 
+// WAVGAT NANO 3.0 Board
+// Change the time in the setup to be valid, upload.
+// Comment those lines back out, upload.
+
 CRGB leds[NUM_LEDS];
 DS3231 rtc;
 
@@ -33,13 +37,13 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Starting execution");
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
-  FastLED.setBrightness(40); // Lower brightness
+  FastLED.setBrightness(80); // Lower brightness
   
   Wire.begin();
 
   // The following lines can be uncommented to set the date and time
-  //rtc.setHour(15);     // Set the hour to 15 (24hr format)
-  //rtc.setMinute(12);   // Set the minute to 12
+  //rtc.setHour(9);     // Set the hour to 15 (24hr format)
+  //rtc.setMinute(22);   // Set the minute to 12
 }
 
 void loop() {
@@ -53,8 +57,8 @@ void loop() {
   int minuteFirstDigit = minute / 10; // Take the first digit
   int minuteSecondDigit = minute % 10; // Take the second digit
   
-  int totalDelay = 0
-  while (totalDelay < 10000) { // 10 seconds
+  int totalDelay = 0;
+  while (totalDelay < 25000) { // 10 seconds
     if (currentFade == 'r') { // If red is currently fading
       red--;
       green++;
@@ -76,8 +80,8 @@ void loop() {
     leds[14 * 2].setRGB(red, green, blue); // Light the dots
     leds[14 * 2 + 1].setRGB(red, green, blue);
     FastLED.show(); // Show the current LEDs
-    delay(10);
-    totalDelay += 10;
+    delay(25);
+    totalDelay += 25;
   }
 }
 
